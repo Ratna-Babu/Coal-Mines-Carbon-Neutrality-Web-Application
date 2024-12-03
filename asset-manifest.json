@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/Coal-Mines-Carbon-Neutrality-Web-Application/static/css/main.0754a982.css",
+    "main.js": "/Coal-Mines-Carbon-Neutrality-Web-Application/static/js/main.1e55a703.js",
+    "static/media/image.png": "/Coal-Mines-Carbon-Neutrality-Web-Application/static/media/image.a9adcbb80da0486dcdf9.png",
+    "static/media/bg.webp": "/Coal-Mines-Carbon-Neutrality-Web-Application/static/media/bg.e4026b65f921454bbff5.webp",
+    "static/media/websiteimage.png": "/Coal-Mines-Carbon-Neutrality-Web-Application/static/media/websiteimage.358642f5671491f6c04c.png",
+    "index.html": "/Coal-Mines-Carbon-Neutrality-Web-Application/index.html",
+    "main.0754a982.css.map": "/Coal-Mines-Carbon-Neutrality-Web-Application/static/css/main.0754a982.css.map",
+    "main.1e55a703.js.map": "/Coal-Mines-Carbon-Neutrality-Web-Application/static/js/main.1e55a703.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0754a982.css",
+    "static/js/main.1e55a703.js"
+  ]
+}
