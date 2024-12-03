@@ -1,0 +1,18 @@
+/* Footer.css */
+.footer {
+    background-color: #d8151502;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    font-family: 'Playfair Display', serif;
+    position: relative; /* Adjust as needed */
+    bottom: 0px;
+    
+    margin-top:0px;
+  }
+  
+  .footer p {
+    margin: 0;
+    color: #030303;
+  }
+  

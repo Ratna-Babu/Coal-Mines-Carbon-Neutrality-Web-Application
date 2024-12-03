@@ -1,0 +1,167 @@
+/* Container Styles */
+.gap-analysis-container {
+  font-family: 'Roboto', sans-serif;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #f4f7f9;
+}
+
+/* Header Styles */
+h2 {
+  font-size: 32px;
+  margin-bottom: 15px;
+  color: #2c3e50;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 5px;
+}
+
+h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #34495e;
+}
+
+h4 {
+  font-size: 20px;
+  margin-bottom: 5px;
+  color: #34495e;
+}
+
+/* Large Number Styles */
+.large-number {
+  font-size: 36px;
+  color: #007bff;
+  font-weight: bold;
+  margin: 10px 0;
+  transition: color 0.3s ease;
+}
+.large-number-red {
+  font-size: 36px;
+  color: #f60334;
+  font-weight: bold;
+  margin: 10px 0;
+  transition: color 0.3s ease;
+}
+
+.large-number:hover {
+  color: #2ecc71;
+}
+
+/* Section Styles */
+.section {
+  margin-bottom: 40px;
+  padding: 30px;
+  border-radius: 15px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Carbon Footprint and Sinks Layout */
+.carbon-footprint,
+.net-emissions,
+.reduction-scenarios {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.methane-emissions{
+  margin-top: 20px;
+}
+/* Box Styles for Sink Area, Offsets, etc. */
+.box {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  transition: box-shadow 0.3s ease;
+}
+
+.box:hover {
+  box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Specific Layout for Carbon Sinks Section */
+.carbon-sinks {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two columns: boxes and chart */
+  gap: 20px;
+}
+
+.sink-area {
+  grid-row: 1; /* Place sink area on top */
+}
+
+.current-offsets {
+  grid-row: 1; /* Place current offsets below sink area */
+}
+
+/* Placeholder for Charts */
+.chart-placeholder {
+  height: 250px;
+  background-color: #ecf0f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #7f8c8d;
+  border-radius: 10px;
+  border: 2px dashed #bdc3c7;
+  transition: background-color 0.3s ease;
+}
+
+.chart-placeholder:hover {
+  background-color: #dcdde1;
+}
+
+/* Typography and Alignment */
+.total-emissions,
+.methane-emissions,
+.net-emissions-value,
+.timeline-to-neutrality {
+  text-align: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.total-emissions:hover,
+.methane-emissions:hover,
+.net-emissions-value:hover {
+  box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Mine Selection Dropdown */
+.mine-selection {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mine-selection select {
+  padding: 5px 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+}
+
+.mine-selection select:focus {
+  border-color: #007bff;
+}
+
+/* Special Section for Timeline */
+.timeline-to-neutrality {
+  grid-column: span 2;
+}

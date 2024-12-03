@@ -1,0 +1,209 @@
+/* Styles for headings and lists */
+h2 {
+    color: #333;
+    font-size: 20px;
+  }
+  
+  .ulclass {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .liclass {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+  }
+  
+  .liclass:hover {
+    background-color: #e9e9e9;
+  }
+  
+  /* Ensure map container takes full available space */
+  #map {
+    height: 100%;
+    width: 100%; /* Adjust width as needed */
+  }
+  
+  /* Modal styles */
+  .modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;  /* Adjust the width as needed */
+    height: 80%;  /* Increased height for the modal */
+    max-width: 900px;  /* Maximum width for larger screens */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow-y: auto;  /* Add scroll if content exceeds height */
+  }
+  
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+  }
+  
+  .modal-content h2 {
+    margin-top: 0;
+  }
+  
+  .modal-content p {
+    font-size: 18px;
+  }
+  /* Style for labels */
+.label {
+  font-weight: bold;
+  color: #333; /* Change the color as per your preference */
+  margin-right: 5px; /* Add some space between the label and value */
+}
+/* Style for the box */
+.info-box {
+  border: 1px solid #ccc; /* Add a border to define the box */
+  padding: 20px;          /* Add padding inside the box */
+  border-radius: 8px;      /* Optional: Add rounded corners */
+  background-color: #f9f9f9; /* Light background color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+  max-width: 850px;       /* Maximum width of the box */
+  margin-left: 0px;        /* Center the box horizontally */
+  word-wrap: break-word;  /* Ensure long text wraps within the box */
+}
+.image-box {
+  width: 100%; /* Or a specific width if needed */
+  height: 100%; /* Or a specific height if needed */
+  margin-right: 0px;
+  background-color: #f9f9f9; /* Optional: background color for better visibility */
+}
+
+/* Style for the box */
+.infos-box {
+  border: 1px solid #ccc; /* Add a border to define the box */
+  display: flex;
+  justify-content: left;
+  padding: 20px;          /* Add padding inside the box */
+  border-radius: 8px;      /* Optional: Add rounded corners */
+  background-color: #f9f9f9; /* Light background color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+  max-width: 850px;       /* Maximum width of the box */
+  margin-left: 0px;        /* Center the box horizontally */
+  word-wrap: break-word;  /* Ensure long text wraps within the box */
+}
+.images-box {
+  display: flex;
+  justify-content: right;
+  width: 100%; /* Or a specific width if needed */
+  height: 100%; /* Or a specific height if needed */
+  margin-right: 0px;
+  background-color: #f9f9f9; /* Optional: background color for better visibility */
+}
+
+.image-box img {
+  margin-right: 0px;
+  max-width: 40%; /* Ensure image scales down within container */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Remove any default spacing around the image */
+  border-radius: 10px;
+}
+
+.images-box img {
+  margin-right: 0px;
+  max-width: 40%; /* Ensure image scales down within container */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Remove any default spacing around the image */
+  border-radius: 10px;
+}
+
+.button-box {
+  display: flex;
+  justify-content: bottom;
+  margin-top: 20px; /* Adjust spacing as needed */
+  
+}
+
+.redirect-button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff; /* Adjust color as needed */
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  
+}
+
+.redirect-button:hover {
+  background-color: #0056b3; /* Adjust hover color as needed */
+}
+
+.pie-chart-container2 {
+  width: 350px; 
+  height: 300px;
+  display: flex;
+  align-items: flex-start;
+  margin-left: 0px; 
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+
+/* Emission Prediction Section */
+.emission-prediction {
+  margin-bottom: 30px;
+}
+
+.prediction-values {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.prediction-item {
+  flex: 1;
+  padding: 10px;
+  background-color: #f0f3f7;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+  
+  /* Position the zoom control below the hamburger button */
+  .leaflet-top.leaflet-left {
+      top: 60px !important; /* Adjust this value as needed */
+      left: 10px !important; /* Ensure it aligns with the hamburger button */
+  }
+  
+  /* Hamburger menu button styles */
+  #hamburger-menu {
+    position: absolute;
+    top: 100px;
+    left: 10px;
+    z-index: 1002;
+    cursor: pointer;
+    font-size: 24px;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  

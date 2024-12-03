@@ -1,0 +1,62 @@
+{
+    "2024": {
+        "fuel emission": 5014122957.25,
+        "electricity emission": 37835463.51,
+        "total emission": 5051958420.77,
+        "methane emission (m3)": 3362834402.14
+    },
+    "2025": {
+        "fuel emission": 5220519251.82,
+        "electricity emission": 39791291.5,
+        "total emission": 5260310543.32,
+        "methane emission (m3)": 3473567645.5
+    },
+    "2026": {
+        "fuel emission": 5426915546.38,
+        "electricity emission": 41747119.49,
+        "total emission": 5468662665.86,
+        "methane emission (m3)": 3584300888.85
+    },
+    "2027": {
+        "fuel emission": 5633311840.94,
+        "electricity emission": 43702947.47,
+        "total emission": 5677014788.41,
+        "methane emission (m3)": 3695034132.21
+    },
+    "2028": {
+        "fuel emission": 5839708135.5,
+        "electricity emission": 45658775.46,
+        "total emission": 5885366910.96,
+        "methane emission (m3)": 3805767375.57
+    },
+    "2029": {
+        "fuel emission": 6046104430.06,
+        "electricity emission": 47614603.44,
+        "total emission": 6093719033.5,
+        "methane emission (m3)": 3916500618.92
+    },
+    "2030": {
+        "fuel emission": 6252500724.62,
+        "electricity emission": 49570431.43,
+        "total emission": 6302071156.05,
+        "methane emission (m3)": 4027233862.28
+    },
+    "2031": {
+        "fuel emission": 6458897019.18,
+        "electricity emission": 51526259.41,
+        "total emission": 6510423278.6,
+        "methane emission (m3)": 4137967105.63
+    },
+    "2032": {
+        "fuel emission": 6665293313.74,
+        "electricity emission": 53482087.4,
+        "total emission": 6718775401.14,
+        "methane emission (m3)": 4248700348.99
+    },
+    "2033": {
+        "fuel emission": 6871689608.31,
+        "electricity emission": 55437915.38,
+        "total emission": 6927127523.69,
+        "methane emission (m3)": 4359433592.35
+    }
+}

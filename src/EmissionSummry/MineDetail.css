@@ -1,0 +1,253 @@
+/* General Layout */
+.mine-detail-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+}
+
+/* Header Styles */
+.mine-header {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.mine-name {
+  color: #2c3e50;
+  font-weight: bold;
+  font-size: 26px;
+}
+
+h3 {
+  font-family: 'Arial Black';
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+/* Emission Overview Section */
+.emission-overview {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 40px;
+  gap: 40px;
+}
+
+.emission-values {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
+  margin-right: 40px;
+}
+
+.emission-value {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+  padding: 20px;
+  background-color: #f0f3f7;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s ease;
+}
+
+.emission-value:hover {
+  background-color: #ecf0f1;
+}
+
+.emission-value label {
+  font-weight: bold;
+  color: #34495e;
+}
+
+.emission-value span {
+  font-size: 18px;
+  color: #2980b9;
+}
+
+.pie-chart-container {
+  display: flex;
+  justify-content: center;
+  margin: auto; /* Center horizontally and vertically */
+  width: 400px; /* Fixed width */
+  height: 400px; /* Fixed height */
+}
+
+.pie-chart-container2 {
+  width: 350px; 
+  height: 300px;
+  display: flex;
+  align-items: flex-start;
+  margin-left: 0px; 
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+/* Emission Prediction Section */
+.emission-prediction {
+  margin-top: 40px;
+  padding: 30px;
+  background-color: #f8f9fa;
+  border: 1px solid #dfe4ea;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.emission-prediction h2 {
+  font-size: 24px;
+  color: #34495e;
+  margin-bottom: 20px;
+}
+
+.prediction-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.prediction-controls label {
+  font-weight: bold;
+  color: #34495e;
+  margin-right: 10px;
+}
+
+.prediction-controls input,
+.prediction-controls select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #bdc3c7;
+  border-radius: 5px;
+  width: 220px;
+  transition: border-color 0.3s ease;
+}
+
+.prediction-controls input:focus,
+.prediction-controls select:focus {
+  border-color: #3498db;
+  outline: none;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+}
+
+.prediction-values {
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #bdc3c7;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  margin-top: 20px;
+}
+
+.prediction-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.prediction-item label {
+  font-weight: bold;
+  color: #34495e;
+}
+
+.prediction-item span {
+  color: #2c3e50;
+  font-size: 20px;
+}
+
+/* Error Message Styles */
+.error-message {
+  color: #e74c3c;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+/* Bar Graph Styles */
+.bar-graph-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.bar-graph {
+  width: 100%;
+  max-width: 1000px;
+  height: 450px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.bar-graph canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Sink Analysis and Reduction Strategies Section */
+.sink-analysis, .emission-reduction {
+  margin-bottom: 40px;
+  padding: 30px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  border: 1px solid #dfe4ea;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sink-analysis h2, .emission-reduction h2 {
+  font-size: 22px;
+  color: #34495e;
+}
+
+.sink-analysis-content, .emission-reduction p {
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  border: 1px solid #bdc3c7;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Prediction Section */
+.fact-content {
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #dfe4ea;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  margin-top: 20px;
+}
+
+.fact-content label {
+  font-weight: bold;
+  color: #34495e;
+}
+
+.fact-content input,
+.fact-content select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #bdc3c7;
+  border-radius: 5px;
+  width: 220px;
+  transition: border-color 0.3s ease;
+}
+
+.fact-content input:focus,
+.fact-content select:focus {
+  border-color: #3498db;
+  outline: none;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+}

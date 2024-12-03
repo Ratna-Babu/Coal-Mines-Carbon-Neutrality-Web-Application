@@ -1,0 +1,87 @@
+/* CardSection.css */
+
+.card-section {
+    display: flex;
+    justify-content: space-around; /* Space around the cards */
+    align-items: center;
+    height: calc(100vh - 60px); /* Same height as HeroSection */
+    background: linear-gradient(white, #303233 ); /* Light background color */
+    padding: 20px; /* Padding around the card section */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow */
+    margin: 50px auto; /* Center the box horizontally */
+    max-width: 1200px; /* Optional: Limit box width */
+    
+  }
+  
+  .card {
+    background-color: white; /* Card background color */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    padding: 20px;
+    overflow: hidden;
+    width: 250px;
+    height:330px; /* Fixed width for cards */
+    text-align: center; /* Center text alignment */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation on hover */
+    
+  }
+  
+  
+
+  
+  .card:hover {
+    transform: translateY(-10px); /* Lift card on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+    opacity: 1;
+    
+  }
+  
+  .card-image img {
+    width: 170px; /* Fixed size for image */
+    height: 170px; /* Fixed size for image */
+    
+    border: 3px solid rgb(53, 48, 48);
+    border-radius: 50%; /* Circular image */
+    margin-bottom: 20px; /* Space between image and title */
+    transition: border-color 0.3s ease;
+  }
+  
+  .card-title {
+    font-size: 1.5rem; /* Title font size */
+    margin-bottom: 10px; /* Space below the title */
+    color: #333; /* Darker text color */
+    font-weight: bold;
+    margin: 16px;
+    transition: color 0.3s ease;
+  }
+  
+  .card-content {
+    font-size: 1rem; /* Content font size */
+    color: #666; /* Gray text color */
+    margin: 16px;
+    transition: color 0.3s ease;
+  }
+  
+  @media (max-width: 768px) {
+    .card-section {
+      flex-direction: column; /* Stack cards on smaller screens */
+      height: auto; /* Adjust height for smaller screens */
+    }
+  
+    .card {
+      margin-bottom: 20px; /* Space between stacked cards */
+    }
+  }
+  .card:hover .card-title {
+  color: #09800d; /* Adjust color as needed */
+  }
+
+.card:hover .card-content {
+  color: #333;
+  }
+
+.card:hover .card-image img {
+  border-color: #333; /* Adjust color as needed */
+  }
+  

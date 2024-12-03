@@ -1,0 +1,133 @@
+/* Navbar.css */
+
+.navbar {
+  display: flex;
+  position: sticky;
+  top: 0;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background-color: #222; /* Darker background for better contrast */
+  color: white;
+  height: 60px;
+  z-index: 99;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+.navbar__logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ff8c00; /* Logo color for emphasis */
+}
+.navbar__logo-image {
+  max-height: 30px; /* Adjust this to your desired maximum height */
+  width: auto; /* Maintain aspect ratio */
+}
+.navbar__logo-image {
+  max-height: 50px; 
+  width: auto; 
+  transition: transform 0.3s ease; /* Add transition for smooth animation */
+}
+
+.navbar__logo-image:hover {
+  transform: scale(1.1); /* Slightly enlarge the image on hover */
+}
+
+.navbar__title {
+  font-size: 2rem;
+  transition: color 0.3s ease;
+  color: white;
+  text-decoration: none;
+}
+
+.navbar__menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar__item {
+  margin-left: 20px;
+  position: relative;
+}
+
+.navbar__link {
+  color: white; /* Consistent link color */
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease, transform 0.3s ease; /* Smooth color and scale transition */
+}
+
+.navbar__link:hover {
+  color: #ff8c00; /* Change link color on hover */
+  transform: scale(1.1); /* Slightly enlarge link on hover */
+}
+
+.navbar__link:active {
+  color: #ff5500; /* Darker orange for active state */
+}
+
+.navbar__item::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #ff8c00;
+  transition: width 0.3s;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+}
+
+.navbar__item:hover::after {
+  width: 100%; /* Underline animation on hover */
+}
+
+.navbar__logo:hover .navbar__title {
+  color: #ff8c00; /* Change logo color on hover */
+}
+
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 10px;
+  }
+
+  .navbar__menu {
+    flex-direction: column;
+    align-items: center;
+    background-color: #333;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .navbar__menu--open {
+    max-height: 300px; /* Expand menu in mobile view */
+  }
+
+  .navbar__item {
+    margin: 10px 0;
+  }
+
+  .navbar__link {
+    font-size: 1.2rem;
+  }
+
+  .navbar__burger {
+    display: block;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: white;
+  }
+}
+
+.navbar__burger {
+  display: none; /* Hidden by default, shown in mobile view */
+}
+

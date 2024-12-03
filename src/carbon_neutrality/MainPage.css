@@ -1,0 +1,94 @@
+/* MainPage.css */
+
+/* Background and container styling */
+.main-page-container {
+    background: linear-gradient(to right, #e0f2f1);
+    background-color: #f5f5f5;
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    margin-top: 40px;
+    
+    min-height: 100vh;
+    text-align: center;
+  }
+  
+  /* Header styling */
+  .main-header {
+    font-weight: bold;
+    margin-bottom: 24px;
+    color: #333;
+  }
+  
+  /* Introductory text */
+  .main-intro {
+    max-width: 1000px;
+    margin: 0 auto 24px;
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  /* Key stats section styling */
+  .key-stats-grid {
+    margin-bottom: 32px;
+  }
+  
+  .key-stats-paper {
+    padding: 20px;
+    background-color: #e0f7fa;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .key-stats-paper:hover {
+    transform: scale(1.05);
+    background-color: lightgreen;
+  }
+  
+  /* Key stats title styling */
+  .key-stats-title {
+    font-weight: bold;
+    color: #004d40;
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+  }
+  
+  /* Key stats text styling */
+  .key-stats-text {
+    color: #333;
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    font-family: 'Roboto', sans-serif;
+    padding: 10px;
+  }
+  
+  /* Call to action styling */
+  .call-to-action {
+    font-weight: medium;
+    margin-bottom: 32px;
+    color: #2e7d32;
+  }
+  
+  /* Button styling */
+  .simulation-button {
+    width: 100%;
+    max-width: 400px;
+    font-size: 1rem;
+    text-transform: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    margin: 8px 0;
+    transition: background-color 0.3s ease;
+  }
+  
+  .simulation-button:hover {
+    background-color: #00695c;
+    color: #fff;
+  }
+  
