@@ -1,6 +1,7 @@
 # Coal Mines Monitoring System
 
 Website Preview: [View](https://ratna-babu.github.io/Coal-Mines-Carbon-Neutrality-Web-Application/)
+
 Note: Click any option in the navigation bar to refresh the page if only the navigation bar is displayed initially.
 
 ## Overview
