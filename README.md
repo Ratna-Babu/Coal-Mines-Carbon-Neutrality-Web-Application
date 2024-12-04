@@ -1,5 +1,8 @@
 # Coal Mines Monitoring System
 
+Website Preview: [View](https://ratna-babu.github.io/Coal-Mines-Carbon-Neutrality-Web-Application/)
+Note: Click any option in the navigation bar to refresh the page if only the navigation bar is displayed initially.
+
 ## Overview
 A web application specifically designed for Indian coal mines to quantify their carbon footprint and explore pathways to carbon neutrality.
 This web application provides a comprehensive monitoring system for coal mines, focusing on carbon emissions, sustainability metrics, and mine-specific details. The system helps track and analyze various aspects of coal mine operations with a particular emphasis on environmental impact and carbon neutrality initiatives.
