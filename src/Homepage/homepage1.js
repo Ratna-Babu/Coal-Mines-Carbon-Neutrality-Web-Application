@@ -261,7 +261,10 @@ const Homepage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('./emission_data.json');
+        const response = await fetch('/emission_data.json');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const data = await response.json();
 
         // Calculate total emissions
@@ -283,6 +286,12 @@ const Homepage = () => {
         });
       } catch (error) {
         console.error('Error fetching emission data:', error);
+        // Set default data to prevent infinite loading
+        setEmissionData({
+          totalCarbonEmissions: 0,
+          totalMethaneEmissions: 0,
+          breakdown: [],
+        });
       }
     };
     fetchData();

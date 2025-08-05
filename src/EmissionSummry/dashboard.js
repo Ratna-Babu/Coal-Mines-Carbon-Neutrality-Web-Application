@@ -2,14 +2,49 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { Grid, Typography, Paper, Select, MenuItem, FormControl, InputLabel, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Button, Box, IconButton } from '@mui/material';
 import { ResponsiveContainer, BarChart, XAxis, YAxis, LabelList, CartesianGrid, Legend, Tooltip, Bar } from 'recharts'; 
 import { Terrain, LocalGasStation, FlashOn, People, Landscape } from '@mui/icons-material';
-import emissionData from './emission_data.json'; 
 import CountUp from 'react-countup';
-import predictedYearlyData from './predicted_yearly_data.json';
-import yearData from './yearly_emission.json';
 
 function Dashboard() {
     const [selectedYear, setSelectedYear] = useState('2023');
     const [selectedChartOption, setSelectedChartOption] = useState('total_emission');
+    const [emissionData, setEmissionData] = useState([]);
+    const [predictedYearlyData, setPredictedYearlyData] = useState({});
+    const [yearData, setYearData] = useState({});
+    const [loading, setLoading] = useState(true);
+
+    // Fetch data on component mount
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const [emissionResponse, predictedResponse, yearlyResponse] = await Promise.all([
+                    fetch('/emission_data.json'),
+                    fetch('/predicted_yearly_data.json'),
+                    fetch('/yearly_emission.json')
+                ]);
+                
+                if (!emissionResponse.ok || !predictedResponse.ok || !yearlyResponse.ok) {
+                    throw new Error('Failed to fetch data');
+                }
+                
+                const emissionData = await emissionResponse.json();
+                const predictedData = await predictedResponse.json();
+                const yearlyData = await yearlyResponse.json();
+                
+                setEmissionData(emissionData);
+                setPredictedYearlyData(predictedData);
+                setYearData(yearlyData);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                setEmissionData([]);
+                setPredictedYearlyData({});
+                setYearData({});
+            } finally {
+                setLoading(false);
+            }
+        };
+        
+        fetchData();
+    }, []);
 
     const totalCarbonEmission = emissionData.reduce((sum, data) => sum + data.fuel_emission + data.electricity_emission, 0);
     const totalFuelEmission = emissionData.reduce((sum, data) => sum + data.fuel_emission, 0);
@@ -71,13 +106,18 @@ function Dashboard() {
         return null;
     };
     const prepareChartData = () => {
-      return Object.keys(yearData).map(year => ({
-          year,
-          fuel_emission: yearData[year]["fuel emission"],
-          electricity_emission: yearData[year]["electricity emission"],
-          total_emission: yearData[year]["total emission"],
-          methane_emission: yearData[year]["methane emission (m3)"],
-      }));
+      if (Object.keys(yearData).length === 0) return [];
+      return Object.keys(yearData).map(year => {
+        const yearDataItem = yearData[year];
+        if (!yearDataItem) return null;
+        return {
+            year,
+            fuel_emission: yearDataItem["fuel emission"] || 0,
+            electricity_emission: yearDataItem["electricity emission"] || 0,
+            total_emission: yearDataItem["total emission"] || 0,
+            methane_emission: yearDataItem["methane emission (m3)"] || 0,
+        };
+      }).filter(item => item !== null);
   };
   
    const lineChartData = prepareChartData();
@@ -91,6 +131,7 @@ const handleLineChartEmissionChange = (event) => {
 
   
     const [minY, maxY] = useMemo(() => {
+        if (lineChartData.length === 0) return [0, 0];
         const values = lineChartData.map(item => item[selectedLineChartEmission]);
         const calculatedMin = Math.min(...values);
         const adjustedMin = calculatedMin > 0 ? calculatedMin * 0.95 : calculatedMin - (Math.abs(calculatedMin) * 0.05); 
@@ -120,6 +161,14 @@ const handleLineChartEmissionChange = (event) => {
       return `${value} tons CO2e`;
   };
   
+
+    if (loading) {
+        return (
+            <div style={{ padding: '20px', backgroundColor: '#f4f6f8', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <Typography variant="h4">Loading...</Typography>
+            </div>
+        );
+    }
 
     return (
         <div style={{ padding: '20px', backgroundColor: '#f4f6f8', minHeight: '100vh' }}>

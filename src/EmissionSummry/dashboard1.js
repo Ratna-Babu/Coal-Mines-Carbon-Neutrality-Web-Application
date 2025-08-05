@@ -26,12 +26,8 @@ import {
     Legend,
     ResponsiveContainer,
 } from 'recharts';
-import predictedYearlyData from './predicted_yearly_data.json';
 
 const EmissionPrediction = () => {
-    // ... (state variables and useEffect remain the same)
-
-    // ... (handleYearChange remains the same)
     const [selectedOption, setSelectedOption] = useState('Electric Vehicles');
     const [selectedYear, setSelectedYear] = useState('2024');
     const [chartData, setChartData] = useState([]);
@@ -39,32 +35,66 @@ const EmissionPrediction = () => {
     const [methaneChartData, setMethaneChartData] = useState([]);
     const [showTable, setShowTable] = useState(false);
     const [tableData, setTableData] = useState([]);
+    const [predictedYearlyData, setPredictedYearlyData] = useState({});
+    const [loading, setLoading] = useState(true);
 
     const COLORS = ['#0088FE', '#00C49F'];
+
+    // Fetch data on component mount
     useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('/predicted_yearly_data.json');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch predicted data');
+                }
+                const data = await response.json();
+                setPredictedYearlyData(data);
+            } catch (error) {
+                console.error('Error fetching predicted data:', error);
+                setPredictedYearlyData({});
+            } finally {
+                setLoading(false);
+            }
+        };
+        
+        fetchData();
+    }, []);
+    useEffect(() => {
+        // Only process data if predictedYearlyData is loaded
+        if (Object.keys(predictedYearlyData).length === 0) return;
+
         // Process data for line chart (converting to million tons for carbon emission)
-        const formattedData = Object.entries(predictedYearlyData).map(([year, data]) => ({
-            year: parseInt(year),
-            'total emission': data['total emission'] / 1000000,
-            'fuel emission': data['fuel emission'] / 1000000,
-            'electricity emission': data['electricity emission'] / 1000000,
-            'methane emission': data['methane emission (m3)'] / 1000000, // Methane emission in million m3
-        }));
+        const formattedData = Object.entries(predictedYearlyData).map(([year, data]) => {
+            if (!data) return null;
+            return {
+                year: parseInt(year),
+                'total emission': (data['total emission'] || 0) / 1000000,
+                'fuel emission': (data['fuel emission'] || 0) / 1000000,
+                'electricity emission': (data['electricity emission'] || 0) / 1000000,
+                'methane emission': (data['methane emission (m3)'] || 0) / 1000000, // Methane emission in million m3
+            };
+        }).filter(item => item !== null);
         setChartData(formattedData);
 
         // Process data for pie chart of the selected year (carbon emissions)
         const yearData = predictedYearlyData[selectedYear];
-        setPieChartData([
-            { name: 'Fuel Emission', value: yearData['fuel emission'] / 1000000 },
-            { name: 'Electricity Emission', value: yearData['electricity emission'] / 1000000 },
-        ]);
+        if (yearData) {
+            setPieChartData([
+                { name: 'Fuel Emission', value: yearData['fuel emission'] / 1000000 },
+                { name: 'Electricity Emission', value: yearData['electricity emission'] / 1000000 },
+            ]);
+        }
 
-        // Process data for methane emission chart
-        setMethaneChartData(Object.entries(predictedYearlyData).map(([year, data]) => ({
-            year: parseInt(year),
-            'methane emission': data['methane emission (m3)'] / 1000000, // Convert to million m3
-        })));
-    }, [selectedYear]);
+                // Process data for methane emission chart
+        setMethaneChartData(Object.entries(predictedYearlyData).map(([year, data]) => {
+            if (!data) return null;
+            return {
+                year: parseInt(year),
+                'methane emission': (data['methane emission (m3)'] || 0) / 1000000, // Convert to million m3
+            };
+        }).filter(item => item !== null));
+    }, [selectedYear, predictedYearlyData]);
 
     const handleYearChange = (event) => {
         setSelectedYear(event.target.value);
@@ -76,27 +106,29 @@ const EmissionPrediction = () => {
         console.log('Selected Option:', selectedOption);
     
         const updatedData = Object.entries(predictedYearlyData).map(([year, data]) => {
+            if (!data) return null;
+            
             let decreasedFuelEmission = 0;
             let increasedElectricityEmission = 0;
     
             if (selectedOption === 'Electric Vehicles') {
-                decreasedFuelEmission = data['fuel emission'] * 0.55;
+                decreasedFuelEmission = (data['fuel emission'] || 0) * 0.55;
     
                 // New calculation for increased electricity emission
-                const predictedFuelEmission = data['fuel emission']; 
+                const predictedFuelEmission = data['fuel emission'] || 0; 
                 const x = (predictedFuelEmission / 2.68) * 0.55;
                 const y = x * 9.3;
                 const z = y * 0.25;
                 const e = z * 0.85;
                 const em = e * 0.5;
     
-                increasedElectricityEmission = (data['electricity emission'] + em) / 1000000;
+                increasedElectricityEmission = ((data['electricity emission'] || 0) + em) / 1000000;
             } else if (selectedOption === 'Solar Energy') {
-                decreasedFuelEmission = data['fuel emission'] * 0.05;
-                increasedElectricityEmission = data['electricity emission'] * 0.15;
+                decreasedFuelEmission = (data['fuel emission'] || 0) * 0.05;
+                increasedElectricityEmission = (data['electricity emission'] || 0) * 0.15;
             }
     
-            const totalEmissionRaa = data['total emission'] / 1000000;
+            const totalEmissionRaa = (data['total emission'] || 0) / 1000000;
             const totalEmission = (decreasedFuelEmission / 1000000) + increasedElectricityEmission; // Add both emissions
     
             // Calculate percentage change
@@ -122,28 +154,36 @@ const EmissionPrediction = () => {
                 increased_electricity_emission: increasedElectricityEmission.toFixed(2), 
                 total_emission: ` ${totalEmissionRaa.toFixed(2)} ( ${formattedPercentageChange}% ${emissionChangeIcon} )` // Show percentage, arrow, and total emission
             };
+        }).filter(item => item !== null);
 
-            setTableData(updatedData.map(row => {
-                const [totalEmission, changeStr] = row.total_emission.split(' (');
-                const [percentageChange, emissionChangeIcon] = changeStr.split('% ');
-          
-                const percentageChangeWithColor = 
-                    emissionChangeIcon === '↓' 
-                        ? `<span style="color: green">${percentageChange}% ${emissionChangeIcon}</span>` 
-                        : `${percentageChange}% ${emissionChangeIcon}`;
-          
-                return {
-                  ...row,
-                  total_emission: `${totalEmission} (${percentageChangeWithColor})`
-                }
-              }));
-              setShowTable(true);
-        });
+        setTableData(updatedData.map(row => {
+            const [totalEmission, changeStr] = row.total_emission.split(' (');
+            const [percentageChange, emissionChangeIcon] = changeStr.split('% ');
+      
+            const percentageChangeWithColor = 
+                emissionChangeIcon === '↓' 
+                    ? `<span style="color: green">${percentageChange}% ${emissionChangeIcon}</span>` 
+                    : `${percentageChange}% ${emissionChangeIcon}`;
+      
+            return {
+              ...row,
+              total_emission: `${totalEmission} (${percentageChangeWithColor})`
+            }
+          }));
+          setShowTable(true);
     
 
     setTableData(updatedData);
     setShowTable(true);
     };
+
+    if (loading) {
+        return (
+            <Box p={4} bgcolor="#f4f6f8" display="flex" justifyContent="center" alignItems="center" minHeight="50vh">
+                <Typography variant="h4">Loading...</Typography>
+            </Box>
+        );
+    }
 
     return (
         <Box p={4} bgcolor="#f4f6f8">
@@ -192,13 +232,16 @@ const EmissionPrediction = () => {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {Object.entries(predictedYearlyData).map(([year, data], index) => (
-                                        <TableRow key={year} sx={{ backgroundColor: index % 2 === 0 ? '#f9f9f9' : '#fff', '&:hover': { backgroundColor: '#f1f1f1', }, }}>
-                                            <TableCell>{year}</TableCell>
-                                            <TableCell align="right">{(data['fuel emission'] / 1000000).toFixed(2)}</TableCell>
-                                            <TableCell align="right">{(data['electricity emission'] / 1000000).toFixed(2)}</TableCell>
-                                        </TableRow>
-                                    ))}
+                                    {Object.entries(predictedYearlyData).map(([year, data], index) => {
+                                        if (!data) return null;
+                                        return (
+                                            <TableRow key={year} sx={{ backgroundColor: index % 2 === 0 ? '#f9f9f9' : '#fff', '&:hover': { backgroundColor: '#f1f1f1', }, }}>
+                                                <TableCell>{year}</TableCell>
+                                                <TableCell align="right">{((data['fuel emission'] || 0) / 1000000).toFixed(2)}</TableCell>
+                                                <TableCell align="right">{((data['electricity emission'] || 0) / 1000000).toFixed(2)}</TableCell>
+                                            </TableRow>
+                                        );
+                                    }).filter(item => item !== null)}
                                 </TableBody>
                             </Table>
                         </TableContainer>

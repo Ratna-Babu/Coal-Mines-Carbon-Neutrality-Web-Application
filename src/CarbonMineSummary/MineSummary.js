@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Line, Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale,  PointElement, LineElement, Title, Tooltip, Legend,ArcElement } from 'chart.js';
 import './MineSummary.css';
-import coalData from './coal_production_data.json';
-import emissionData from './emission_data.json';
 
 
 
@@ -19,6 +17,39 @@ function MineSummary() {
   const navigate = useNavigate();
   const [expandedMine, setExpandedMine] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [coalData, setCoalData] = useState([]);
+  const [emissionData, setEmissionData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch data on component mount
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [coalResponse, emissionResponse] = await Promise.all([
+          fetch('/coal_production_data.json'),
+          fetch('/emission_data.json')
+        ]);
+        
+        if (!coalResponse.ok || !emissionResponse.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        
+        const coalData = await coalResponse.json();
+        const emissionData = await emissionResponse.json();
+        
+        setCoalData(coalData);
+        setEmissionData(emissionData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setCoalData([]);
+        setEmissionData([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchData();
+  }, []);
 
   // Function to handle the back button navigation
   const handleGoBack = () => {
@@ -478,6 +509,16 @@ const [coalProductionByStatePieData] = useState({
   
 
 
+
+  if (loading) {
+    return (
+      <div className="mine-summary-container">
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh' }}>
+          <h2>Loading...</h2>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="mine-summary-container">

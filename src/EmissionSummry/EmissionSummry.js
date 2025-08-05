@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Pie } from 'react-chartjs-2';
-import emissionData from './emission_data.json';
 import './EmissionSummary.css';
 import Dashboard from './dashboard';
 import Dashboard1 from './dashboard1';
@@ -17,13 +16,36 @@ const EmissionSummary = () => {
   const [numEmployees, setNumEmployees] = useState(''); // For per capita calculation
   const [carbonCredits, setCarbonCredits] = useState('');
   const [afforestationArea, setAfforestationArea] = useState('');
-  const [coalMines, setCoalMines] = useState(
-    emissionData.map((mine) => ({
-      ...mine,
-      emissionData: '',
-      isOpen: false,
-    }))
-  );
+  const [coalMines, setCoalMines] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch emission data on component mount
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/emission_data.json');
+        if (!response.ok) {
+          throw new Error('Failed to fetch emission data');
+        }
+        const emissionData = await response.json();
+        
+        setCoalMines(
+          emissionData.map((mine) => ({
+            ...mine,
+            emissionData: '',
+            isOpen: false,
+          }))
+        );
+      } catch (error) {
+        console.error('Error fetching emission data:', error);
+        setCoalMines([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchData();
+  }, []);
   const handleGoBack = () => {
     navigate('/');
   };
@@ -80,6 +102,16 @@ const EmissionSummary = () => {
       },
     ],
   };
+
+  if (loading) {
+    return (
+      <div className="container">
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh' }}>
+          <h2>Loading...</h2>
+        </div>
+      </div>
+    );
+  }
 
   return (
     
