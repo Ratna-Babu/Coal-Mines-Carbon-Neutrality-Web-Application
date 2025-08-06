@@ -50,3 +50,8 @@ npm install
 ```bash
 npm start
 ```
+
+Note: If the page is loading forever, run this command
+```bash
+npm install --save-dev @babel/plugin-proposal-private-property-in-object
+```
